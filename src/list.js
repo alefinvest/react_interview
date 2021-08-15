@@ -18,12 +18,16 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    const timer = setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.setState(function (state, props){
         return {activeID: state.activeID + 1}})
     });
   }
   
+  componentWillUnmount = () => {
+    clearTimeout(this.timer);
+  }
+
   render() {
     const { items } = this.props;
     const activeID = this.state.activeID;
